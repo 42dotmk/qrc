@@ -1,10 +1,12 @@
-const CACHE = 'qrcanvas-v1';
+const CACHE = 'qrcanvas-v2';
 const PRECACHE = [
   './',
   './index.html',
   './style.css',
   './app.js',
   './favicon.svg',
+  './icon-192.png',
+  './icon-512.png',
   './base42-logo.svg',
   './manifest.json',
   'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js',
