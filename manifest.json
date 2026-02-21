@@ -1,0 +1,22 @@
+{
+  "name": "QR Canvas",
+  "short_name": "QR Canvas",
+  "description": "Beautiful, fully client-side QR code generator with advanced design customization.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "base42-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
