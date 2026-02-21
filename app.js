@@ -3,10 +3,11 @@
 // by Base42 / 42.mk
 // ===========================================
 
-(function () {
-  'use strict';
+import qrcode from 'qrcode-generator';
+import { jsPDF } from 'jspdf';
+import '@fontsource-variable/inter';
 
-  // --- Dark Mode ---
+// --- Dark Mode ---
   function initTheme() {
     const saved = localStorage.getItem('qrcanvas-theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -93,7 +94,7 @@
   function getContent() {
     switch (state.contentType) {
       case 'url':
-        return document.getElementById('urlInput').value || 'https://example.com';
+        return document.getElementById('urlInput').value || 'https://qr.42.mk';
       case 'text':
         return document.getElementById('textInput').value || 'Hello World';
       case 'email': {
@@ -203,7 +204,7 @@
         return uri;
       }
       default:
-        return 'https://example.com';
+        return 'https://qr.42.mk';
     }
   }
 
@@ -810,7 +811,6 @@
     const canvas = document.createElement('canvas');
     renderQR(canvas, state.resolution);
     const imgData = canvas.toDataURL('image/png');
-    const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({
       orientation: 'portrait',
       unit: 'mm',
@@ -1136,10 +1136,9 @@
     };
   }
 
-  // Boot
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
+// Boot
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}

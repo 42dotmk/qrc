@@ -1,0 +1,18 @@
+{
+  "name": "qr-canvas",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.0.0",
+    "jspdf": "^2.5.1",
+    "qrcode-generator": "^1.4.4"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "vite-plugin-pwa": "^0.21.0"
+  }
+}

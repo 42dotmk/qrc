@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(convert:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}
