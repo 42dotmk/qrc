@@ -38,7 +38,7 @@ python3 -m http.server 8080
 
 ## The NSND 2026 Story
 
-This project was born at Base42's No Solder No Drill hackathon. The rules said no hardware tools - they didn't say anything about letting an AI write your entire app while you supervise with a coffee in hand. Is it cheating? We prefer "creative interpretation of the rules." The QR codes work. The code... also works. We checked. Once.
+This project was born at Base42's Nothing is Going to Happen (Nista se nece dogoditi) hackathon. The rules said no hardware tools - they didn't say anything about letting an AI write your entire app while you supervise with a coffee in hand. Is it cheating? We prefer "creative interpretation of the rules." The QR codes work. The code... also works. We checked. Once.
 
 ## Contributing
 
