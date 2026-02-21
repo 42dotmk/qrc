@@ -7,6 +7,10 @@ const commitHash = execSync('git rev-parse --short HEAD').toString().trim();
 export default defineConfig({
   base: '/',
   plugins: [
+    {
+      name: 'inject-commit-hash',
+      transformIndexHtml: html => html.replace('__COMMIT_HASH__', commitHash),
+    },
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
