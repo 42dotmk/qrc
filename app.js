@@ -90,6 +90,20 @@ import '@fontsource-variable/inter';
     { name: 'Mono', fg: '#212121', bg: '#FAFAFA', body: 'square', eyeFrame: 'square', eyeBall: 'square', gradient: false, eyeColor: false },
   ];
 
+  // --- Color Presets ---
+  const colorPresets = [
+    { label: 'Classic',    fg: '#000000', bg: '#FFFFFF' },
+    { label: 'Inverse',    fg: '#FFFFFF', bg: '#000000' },
+    { label: 'Base42',     fg: '#2BEDED', bg: '#0f1419' },
+    { label: 'Ocean',      fg: '#006994', bg: '#E0F7FA' },
+    { label: 'Forest',     fg: '#1B5E20', bg: '#F1F8E9' },
+    { label: 'Berry',      fg: '#4A148C', bg: '#F3E5F5' },
+    { label: 'Crimson',    fg: '#B71C1C', bg: '#FFEBEE' },
+    { label: 'Amber',      fg: '#E65100', bg: '#FFF8E1' },
+    { label: 'Slate',      fg: '#263238', bg: '#ECEFF1' },
+    { label: 'Rose Gold',  fg: '#880E4F', bg: '#FCE4EC' },
+  ];
+
   // --- Content Builders ---
   function getContent() {
     switch (state.contentType) {
@@ -916,6 +930,7 @@ import '@fontsource-variable/inter';
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
     // Build shape grids
+    buildColorPresets();
     buildShapeGrid('bodyShapeGrid', bodyShapes, 'body', 'bodyShape');
     buildShapeGrid('eyeFrameShapeGrid', eyeFrameShapes, 'eyeFrame', 'eyeFrameShape');
     buildShapeGrid('eyeBallShapeGrid', eyeBallShapes, 'eyeBall', 'eyeBallShape');
@@ -1039,6 +1054,30 @@ import '@fontsource-variable/inter';
 
     // Initial render
     updatePreview();
+  }
+
+  function buildColorPresets() {
+    const grid = document.getElementById('colorPresets');
+    colorPresets.forEach(preset => {
+      const el = document.createElement('button');
+      el.className = 'color-preset';
+      el.title = preset.label;
+      el.style.background = preset.bg;
+      el.style.borderColor = preset.fg;
+      el.innerHTML = `<span style="background:${preset.fg}"></span>`;
+      el.addEventListener('click', () => {
+        state.fgColor = preset.fg;
+        state.bgColor = preset.bg;
+        document.getElementById('fgColor').value = preset.fg;
+        document.getElementById('fgColorText').value = preset.fg;
+        document.getElementById('bgColor').value = preset.bg;
+        document.getElementById('bgColorText').value = preset.bg;
+        document.querySelectorAll('.color-preset').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        updatePreview();
+      });
+      grid.appendChild(el);
+    });
   }
 
   function buildShapeGrid(gridId, shapes, type, stateKey) {
