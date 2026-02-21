@@ -1023,10 +1023,12 @@
     document.getElementById('dlSvg').addEventListener('click', downloadSVG);
     document.getElementById('dlPdf').addEventListener('click', downloadPDF);
 
-    // Collapsible groups
+    // Collapsible groups (start collapsed)
     document.querySelectorAll('.group-title').forEach(title => {
+      const content = title.nextElementSibling;
+      title.classList.add('collapsed');
+      content.classList.add('collapsed');
       title.addEventListener('click', () => {
-        const content = title.nextElementSibling;
         title.classList.toggle('collapsed');
         content.classList.toggle('collapsed');
       });
