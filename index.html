@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Canvas - Beautiful QR Code Generator</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="base42-logo.svg" alt="Base42" class="logo-img">
+        <div class="logo-divider"></div>
+        <span class="logo-text">QR Canvas</span>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <svg class="theme-icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="theme-icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Content Type Tabs -->
+    <section class="content-section">
+      <h2 class="section-title">1. Choose Content Type</h2>
+      <div class="content-tabs" id="contentTabs">
+        <button class="tab active" data-type="url"><span class="tab-icon">🔗</span> URL</button>
+        <button class="tab" data-type="text"><span class="tab-icon">📝</span> Text</button>
+        <button class="tab" data-type="email"><span class="tab-icon">📧</span> Email</button>
+        <button class="tab" data-type="phone"><span class="tab-icon">📞</span> Phone</button>
+        <button class="tab" data-type="sms"><span class="tab-icon">💬</span> SMS</button>
+        <button class="tab" data-type="vcard"><span class="tab-icon">👤</span> vCard</button>
+        <button class="tab" data-type="mecard"><span class="tab-icon">📇</span> MeCard</button>
+        <button class="tab" data-type="wifi"><span class="tab-icon">📶</span> WiFi</button>
+        <button class="tab" data-type="location"><span class="tab-icon">📍</span> Location</button>
+        <button class="tab" data-type="event"><span class="tab-icon">📅</span> Event</button>
+        <button class="tab" data-type="crypto"><span class="tab-icon">₿</span> Crypto</button>
+      </div>
+
+      <!-- Content Forms -->
+      <div class="content-forms" id="contentForms">
+        <!-- URL -->
+        <div class="form-panel active" data-form="url">
+          <label>Website URL</label>
+          <input type="url" id="urlInput" placeholder="https://example.com" value="https://example.com">
+        </div>
+
+        <!-- Text -->
+        <div class="form-panel" data-form="text">
+          <label>Your Text</label>
+          <textarea id="textInput" rows="4" placeholder="Enter your text here..."></textarea>
+        </div>
+
+        <!-- Email -->
+        <div class="form-panel" data-form="email">
+          <label>Email Address</label>
+          <input type="email" id="emailTo" placeholder="name@example.com">
+          <label>Subject</label>
+          <input type="text" id="emailSubject" placeholder="Subject line">
+          <label>Message</label>
+          <textarea id="emailBody" rows="3" placeholder="Email body..."></textarea>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-panel" data-form="phone">
+          <label>Phone Number</label>
+          <input type="tel" id="phoneInput" placeholder="+1234567890">
+        </div>
+
+        <!-- SMS -->
+        <div class="form-panel" data-form="sms">
+          <label>Phone Number</label>
+          <input type="tel" id="smsPhone" placeholder="+1234567890">
+          <label>Message</label>
+          <textarea id="smsMessage" rows="3" placeholder="SMS message..."></textarea>
+        </div>
+
+        <!-- vCard -->
+        <div class="form-panel" data-form="vcard">
+          <div class="form-row">
+            <div class="form-col">
+              <label>First Name</label>
+              <input type="text" id="vcardFirstName" placeholder="John">
+            </div>
+            <div class="form-col">
+              <label>Last Name</label>
+              <input type="text" id="vcardLastName" placeholder="Doe">
+            </div>
+          </div>
+          <label>Organization</label>
+          <input type="text" id="vcardOrg" placeholder="Company Name">
+          <label>Title</label>
+          <input type="text" id="vcardTitle" placeholder="Job Title">
+          <label>Phone</label>
+          <input type="tel" id="vcardPhone" placeholder="+1234567890">
+          <label>Mobile</label>
+          <input type="tel" id="vcardMobile" placeholder="+1234567890">
+          <label>Email</label>
+          <input type="email" id="vcardEmail" placeholder="name@example.com">
+          <label>Website</label>
+          <input type="url" id="vcardUrl" placeholder="https://example.com">
+          <label>Street</label>
+          <input type="text" id="vcardStreet" placeholder="123 Main St">
+          <div class="form-row">
+            <div class="form-col">
+              <label>City</label>
+              <input type="text" id="vcardCity" placeholder="City">
+            </div>
+            <div class="form-col">
+              <label>Zip</label>
+              <input type="text" id="vcardZip" placeholder="12345">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-col">
+              <label>State</label>
+              <input type="text" id="vcardState" placeholder="State">
+            </div>
+            <div class="form-col">
+              <label>Country</label>
+              <input type="text" id="vcardCountry" placeholder="Country">
+            </div>
+          </div>
+        </div>
+
+        <!-- MeCard -->
+        <div class="form-panel" data-form="mecard">
+          <div class="form-row">
+            <div class="form-col">
+              <label>First Name</label>
+              <input type="text" id="mecardFirstName" placeholder="John">
+            </div>
+            <div class="form-col">
+              <label>Last Name</label>
+              <input type="text" id="mecardLastName" placeholder="Doe">
+            </div>
+          </div>
+          <label>Nickname</label>
+          <input type="text" id="mecardNickname" placeholder="Johnny">
+          <label>Phone</label>
+          <input type="tel" id="mecardPhone" placeholder="+1234567890">
+          <label>Email</label>
+          <input type="email" id="mecardEmail" placeholder="name@example.com">
+          <label>URL</label>
+          <input type="url" id="mecardUrl" placeholder="https://example.com">
+          <label>Note</label>
+          <textarea id="mecardNote" rows="2" placeholder="Additional notes..."></textarea>
+        </div>
+
+        <!-- WiFi -->
+        <div class="form-panel" data-form="wifi">
+          <label>Network Name (SSID)</label>
+          <input type="text" id="wifiSsid" placeholder="MyNetwork">
+          <label>Password</label>
+          <input type="text" id="wifiPassword" placeholder="Password">
+          <label>Encryption</label>
+          <select id="wifiEncryption">
+            <option value="WPA">WPA/WPA2</option>
+            <option value="WEP">WEP</option>
+            <option value="nopass">None</option>
+          </select>
+          <label class="checkbox-label">
+            <input type="checkbox" id="wifiHidden"> Hidden Network
+          </label>
+        </div>
+
+        <!-- Location -->
+        <div class="form-panel" data-form="location">
+          <div class="form-row">
+            <div class="form-col">
+              <label>Latitude</label>
+              <input type="number" id="locationLat" placeholder="40.7128" step="any">
+            </div>
+            <div class="form-col">
+              <label>Longitude</label>
+              <input type="number" id="locationLng" placeholder="-74.0060" step="any">
+            </div>
+          </div>
+          <label>Query / Place Name (optional)</label>
+          <input type="text" id="locationQuery" placeholder="Empire State Building">
+        </div>
+
+        <!-- Event -->
+        <div class="form-panel" data-form="event">
+          <label>Event Title</label>
+          <input type="text" id="eventTitle" placeholder="My Event">
+          <label>Location</label>
+          <input type="text" id="eventLocation" placeholder="123 Main St, City">
+          <div class="form-row">
+            <div class="form-col">
+              <label>Start</label>
+              <input type="datetime-local" id="eventStart">
+            </div>
+            <div class="form-col">
+              <label>End</label>
+              <input type="datetime-local" id="eventEnd">
+            </div>
+          </div>
+          <label>Description</label>
+          <textarea id="eventDescription" rows="2" placeholder="Event details..."></textarea>
+        </div>
+
+        <!-- Crypto -->
+        <div class="form-panel" data-form="crypto">
+          <label>Cryptocurrency</label>
+          <select id="cryptoType">
+            <option value="bitcoin">Bitcoin</option>
+            <option value="bitcoincash">Bitcoin Cash</option>
+            <option value="ethereum">Ethereum</option>
+            <option value="litecoin">Litecoin</option>
+            <option value="dash">Dash</option>
+          </select>
+          <label>Address</label>
+          <input type="text" id="cryptoAddress" placeholder="Wallet address">
+          <label>Amount (optional)</label>
+          <input type="number" id="cryptoAmount" placeholder="0.001" step="any">
+          <label>Message (optional)</label>
+          <input type="text" id="cryptoMessage" placeholder="Payment for...">
+        </div>
+      </div>
+    </section>
+
+    <div class="editor-layout">
+      <!-- Design Panel -->
+      <section class="design-section">
+        <h2 class="section-title">2. Customize Design</h2>
+
+        <!-- Templates -->
+        <div class="design-group">
+          <h3 class="group-title" data-toggle="templates">
+            <span>Templates</span>
+            <span class="toggle-icon">▾</span>
+          </h3>
+          <div class="group-content" id="templatesContent">
+            <div class="template-grid" id="templateGrid"></div>
+          </div>
+        </div>
+
+        <!-- Colors -->
+        <div class="design-group">
+          <h3 class="group-title" data-toggle="colors">
+            <span>Colors</span>
+            <span class="toggle-icon">▾</span>
+          </h3>
+          <div class="group-content" id="colorsContent">
+            <div class="color-row">
+              <label>Foreground Color</label>
+              <div class="color-input-group">
+                <input type="color" id="fgColor" value="#000000">
+                <input type="text" id="fgColorText" value="#000000" class="color-text">
+              </div>
+            </div>
+            <div class="color-row">
+              <label>Background Color</label>
+              <div class="color-input-group">
+                <input type="color" id="bgColor" value="#FFFFFF">
+                <input type="text" id="bgColorText" value="#FFFFFF" class="color-text">
+              </div>
+            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" id="useGradient"> Use Gradient
+            </label>
+            <div class="gradient-options hidden" id="gradientOptions">
+              <div class="color-row">
+                <label>Gradient End Color</label>
+                <div class="color-input-group">
+                  <input type="color" id="gradientColor" value="#0000FF">
+                  <input type="text" id="gradientColorText" value="#0000FF" class="color-text">
+                </div>
+              </div>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="gradientType" value="linear" checked> Linear
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="gradientType" value="radial"> Radial
+                </label>
+              </div>
+            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" id="useCustomEyeColor"> Custom Eye Color
+            </label>
+            <div class="eye-color-options hidden" id="eyeColorOptions">
+              <div class="color-row">
+                <label>Eye Frame Color</label>
+                <div class="color-input-group">
+                  <input type="color" id="eyeFrameColor" value="#000000">
+                  <input type="text" id="eyeFrameColorText" value="#000000" class="color-text">
+                </div>
+              </div>
+              <div class="color-row">
+                <label>Eye Ball Color</label>
+                <div class="color-input-group">
+                  <input type="color" id="eyeBallColor" value="#000000">
+                  <input type="text" id="eyeBallColorText" value="#000000" class="color-text">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body Shape -->
+        <div class="design-group">
+          <h3 class="group-title" data-toggle="bodyShape">
+            <span>Body Shape</span>
+            <span class="toggle-icon">▾</span>
+          </h3>
+          <div class="group-content" id="bodyShapeContent">
+            <div class="shape-grid" id="bodyShapeGrid"></div>
+          </div>
+        </div>
+
+        <!-- Eye Frame Shape -->
+        <div class="design-group">
+          <h3 class="group-title" data-toggle="eyeFrameShape">
+            <span>Eye Frame Shape</span>
+            <span class="toggle-icon">▾</span>
+          </h3>
+          <div class="group-content" id="eyeFrameShapeContent">
+            <div class="shape-grid" id="eyeFrameShapeGrid"></div>
+          </div>
+        </div>
+
+        <!-- Eye Ball Shape -->
+        <div class="design-group">
+          <h3 class="group-title" data-toggle="eyeBallShape">
+            <span>Eye Ball Shape</span>
+            <span class="toggle-icon">▾</span>
+          </h3>
+          <div class="group-content" id="eyeBallShapeContent">
+            <div class="shape-grid" id="eyeBallShapeGrid"></div>
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="design-group">
+          <h3 class="group-title" data-toggle="logo">
+            <span>Logo</span>
+            <span class="toggle-icon">▾</span>
+          </h3>
+          <div class="group-content" id="logoContent">
+            <div class="logo-upload-area" id="logoUploadArea">
+              <input type="file" id="logoFileInput" accept="image/png,image/jpeg,image/gif,image/svg+xml" hidden>
+              <p>Click or drag image here</p>
+              <p class="upload-hint">PNG, JPG, GIF, SVG (max 2MB)</p>
+            </div>
+            <div class="logo-preview hidden" id="logoPreview">
+              <img id="logoPreviewImg" alt="Logo preview">
+              <button class="btn btn-small btn-danger" id="removeLogo">Remove Logo</button>
+            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" id="logoRemoveBg" checked> Remove background behind logo
+            </label>
+            <div class="slider-group">
+              <label>Logo Size: <span id="logoSizeValue">30</span>%</label>
+              <input type="range" id="logoSize" min="10" max="50" value="30">
+            </div>
+          </div>
+        </div>
+
+        <!-- Quality -->
+        <div class="design-group">
+          <h3 class="group-title" data-toggle="quality">
+            <span>Quality & Error Correction</span>
+            <span class="toggle-icon">▾</span>
+          </h3>
+          <div class="group-content" id="qualityContent">
+            <div class="slider-group">
+              <label>Resolution: <span id="resolutionValue">1000</span>px</label>
+              <input type="range" id="resolution" min="200" max="4000" step="100" value="1000">
+            </div>
+            <label>Error Correction Level</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="ecLevel" value="L"> Low (7%)</label>
+              <label class="radio-label"><input type="radio" name="ecLevel" value="M"> Medium (15%)</label>
+              <label class="radio-label"><input type="radio" name="ecLevel" value="Q" checked> Quartile (25%)</label>
+              <label class="radio-label"><input type="radio" name="ecLevel" value="H"> High (30%)</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Preview & Download -->
+      <section class="preview-section">
+        <div class="preview-sticky">
+          <h2 class="section-title">3. Preview & Download</h2>
+          <div class="qr-preview" id="qrPreview">
+            <canvas id="qrCanvas"></canvas>
+          </div>
+          <button class="btn btn-primary btn-large" id="generateBtn">Generate QR Code</button>
+          <div class="download-buttons">
+            <button class="btn btn-download" data-format="png" id="dlPng">PNG</button>
+            <button class="btn btn-download" data-format="svg" id="dlSvg">SVG</button>
+            <button class="btn btn-download" data-format="pdf" id="dlPdf">PDF</button>
+          </div>
+          <div class="contrast-warning hidden" id="contrastWarning">
+            Low contrast between foreground and background may affect scannability.
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>QR Canvas &mdash; 100% client-side, no data sent to servers</p>
+      <p class="footer-credit">Vibe coded at <a href="https://nsnd.mk" target="_blank" rel="noopener">NSND 2026</a> by Boshe @ <a href="https://42.mk" target="_blank" rel="noopener">Base42</a> &middot; MIT License &middot; No humans wrote this code</p>
+    </div>
+  </footer>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
