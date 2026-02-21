@@ -1,8 +1,11 @@
+import { execSync } from 'child_process';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
+const commitHash = execSync('git rev-parse --short HEAD').toString().trim();
+
 export default defineConfig({
-  base: '/qrc/',
+  base: '/',
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
@@ -13,7 +16,7 @@ export default defineConfig({
         name: 'QR Canvas',
         short_name: 'QR Canvas',
         description: 'Beautiful, fully client-side QR code generator with advanced design customization.',
-        start_url: '/qrc/',
+        start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#6366f1',
